@@ -12,8 +12,6 @@ public class Ball : MonoBehaviour
     [SerializeField] 
     private Paddle _paddle;
     bool _hasStarted;
-    private Vector2 _currentBallSpeed;
-    private Rigidbody2D _rb;
     [SerializeField]
     float constantSpeed;
     
@@ -91,32 +89,6 @@ public class Ball : MonoBehaviour
         {
             _arrow.gameObject.SetActive(true);
         }
-        //----Tying to arrow----
-
-        //_currentBallSpeed = GetComponent<Rigidbody2D>().velocity;
-        //_rb.velocity = constantSpeed * (_rb.velocity.normalized); //keeping constant speed
-
-        
-        ////----Ball stuck timer procedure----
-        //if (_currentBallSpeed.y == 0 && startTimer == false && _hasStarted == true)
-        //    startTimer = true;
-        //if (startTimer == true)
-        //    ballStuckTimer -= Time.deltaTime;
-        //if (ballStuckTimer <= 0 && _currentBallSpeed.y == 0 && _hasStarted == true)
-        //{
-        //    startTimer = false;
-        //    ySpeedZero = true;
-        //}
-        //if (_currentBallSpeed.x == 0 && startTimer == false)
-        //    startTimer = true;
-        //if (startTimer == true)
-        //    ballStuckTimer -= Time.deltaTime;
-        //if (ballStuckTimer <= 0 && _currentBallSpeed.y == 0 && _hasStarted == true)
-        //{
-        //    startTimer = false;
-        //    xSpeedZero = true;
-        //}
-        ////----Ball stuck timer procedure----
         
         constantSpeed = 7 * _arrow.ArrowLength();
     }
@@ -145,32 +117,6 @@ public class Ball : MonoBehaviour
             else
                 SceneManager.LoadScene("loseScene");
         }
-
-        ////----Getting out of eternal cycling----
-        //if (collision.gameObject.tag == "walls_or_ceiling" && ySpeedZero) 
-        //{
-        //    if (transform.position.y >= 0) //checking in which part of screen the ball is: >= 0 => upper
-        //    {
-        //        _rb.AddForce(new Vector2(_currentBallSpeed.x, -0.1f), ForceMode2D.Impulse);
-        //        ySpeedZero = false;
-        //    } else
-        //    {
-        //        _rb.AddForce(new Vector2(_currentBallSpeed.x, 0.1f), ForceMode2D.Impulse);
-        //        ySpeedZero = false;
-        //    }
-        //} else if (collision.gameObject.tag == "walls_or_ceiling" && xSpeedZero) 
-        //{
-        //    if (transform.position.x >= 0) // left or right half of screen
-        //    {
-        //        _rb.AddForce(new Vector2(-0.1f, _currentBallSpeed.y), ForceMode2D.Impulse);
-        //        xSpeedZero = false;
-        //    } else
-        //    {
-        //        _rb.AddForce(new Vector2(0.1f, _currentBallSpeed.y), ForceMode2D.Impulse);
-        //        xSpeedZero = false;
-        //    }
-        // }
-        ////----Getting out of eternal cycling----
     }
 
 }
